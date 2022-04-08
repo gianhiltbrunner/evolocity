@@ -2,6 +2,8 @@ import evolocity as evo
 import numpy as np
 import scanpy as sc
 
+model_path = '/Users/gianhiltbrunner/Desktop/prot_networks/LY16'#'/Users/gianhiltbrunner/Desktop/prot_bert_untuned'
+
 test_seqs = [
     'MKTVRQERLKSIVRILERSKEPV',
     'SGAQLAEELSVSRQVIVQDIA',
@@ -13,8 +15,11 @@ test_seqs = [
     'GIRLLQEE',
 ]
 
-adata = evo.pp.featurize_seqs(test_seqs, model_name='protbert', model_path='/Users/gianhiltbrunner/Desktop/prot_bert_untuned')
+adata = evo.pp.featurize_seqs(test_seqs, model_name='protbert', model_path=model_path)
+
+
 evo.pp.neighbors(adata)
 sc.tl.umap(adata)
 
-evo.tl.velocity_graph(adata, model_name='protbert', model_path='/Users/gianhiltbrunner/Desktop/prot_bert_untuned')
+
+evo.tl.velocity_graph(adata, model_name='protbert', model_path=model_path)
