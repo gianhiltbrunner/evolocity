@@ -2,7 +2,9 @@ import evolocity as evo
 import numpy as np
 import scanpy as sc
 
+
 model_path = '/Users/gianhiltbrunner/Desktop/prot_networks/LY16'#'/Users/gianhiltbrunner/Desktop/prot_bert_untuned'
+
 
 test_seqs = [
     'MKTVRQERLKSIVRILERSKEPV',
@@ -14,6 +16,7 @@ test_seqs = [
     'PNAAEEHLKALARKGVIEIVSGASR',
     'GIRLLQEE',
 ]
+
 
 adata = evo.pp.featurize_seqs(test_seqs, model_name='protbert', model_path=model_path)
 
