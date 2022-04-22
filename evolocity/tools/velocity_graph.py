@@ -84,7 +84,12 @@ def get_indices(dist, n_neighbors=None, mode_neighbors='distances'):
 # Compute likelihoods across entire sequence with masked language model.
 def predict_sequence_prob(seq_of_interest, vocabulary, model,
                           verbose=False):
-    if 'esm' in model.name_:
+    if model.name_ == 'esm1b_huggingface':
+        from .esm1b_huggingface_semantics import predict_sequence_prob_esm1b_hf
+        return predict_sequence_prob_esm1b_hf(
+            seq_of_interest, model
+        )
+    elif 'esm' in model.name_:
         from .fb_semantics import predict_sequence_prob_fb
         return predict_sequence_prob_fb(
             seq_of_interest, model.alphabet_, model.model_,

@@ -5,7 +5,7 @@ class ProtBertModel(object):
     def __init__(self, model_path):
         self.name_ = 'protbert'
 
-        model = BertForMaskedLM.from_pretrained(model_path)
+        model = BertForMaskedLM.from_pretrained(model_path, ignore_mismatched_sizes=True)
         model.eval()
         if torch.cuda.is_available():
             model = model.cuda()

@@ -44,6 +44,12 @@ def get_model(model_name, model_path = None):
 
         from ..tools.protbert import ProtBertModel
         model = ProtBertModel(model_path)
+    elif model_name == 'esm1b_huggingface':
+        if model_path == None:
+            raise ValueError('Please provide a path!')
+
+        from ..tools.esm1b_huggingface import ESM_HF
+        model = ESM_HF(model_path)
     else:
         raise ValueError('Invalid model {}'.format(model_name))
 
