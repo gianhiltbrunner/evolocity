@@ -18,7 +18,7 @@ test_seqs = [
 ]
 
 
-adata = evo.pp.featurize_seqs(test_seqs)
+adata = evo.pp.featurize_seqs(test_seqs, model_name='esm1b_huggingface', model_path=model_path)
 
 
 evo.pp.neighbors(adata)

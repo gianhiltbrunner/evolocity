@@ -61,7 +61,16 @@ def embed_seqs(
     namespace,
     verbose=True,
 ):
-    if 'esm' in model.name_:
+    if 'esm1b_huggingface' == model.name_:
+        from ..tools.esm1b_huggingface_semantics import embed_seqs_esm1b_hf
+        seqs_fb = sorted([seq for seq in seqs])
+        embedded = embed_seqs_esm1b_hf(
+            seqs_fb, model.model_, model.tokenizer_,
+        )
+        X_embed = np.array([
+            embedded[seq][0]['embedding'] for seq in seqs_fb
+        ])
+    elif 'esm' in model.name_:
         from ..tools.fb_semantics import embed_seqs_fb
         seqs_fb = sorted([ seq for seq in seqs ])
         embedded = embed_seqs_fb(
